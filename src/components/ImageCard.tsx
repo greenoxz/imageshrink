@@ -52,7 +52,7 @@ export default function ImageCard({
             <span
               className={`inline-flex items-center gap-1 rounded px-2.5 py-1 text-xs font-medium ${
                 isSmaller
-                  ? 'bg-[#fef2ee] text-[#e95f3d]'
+                  ? 'bg-[#e8f5e9] text-[#2e7d32]'
                   : 'bg-[#f5f5f5] text-[#888]'
               }`}
             >
@@ -99,7 +99,7 @@ export default function ImageCard({
             className={`rounded p-2.5 ${
               image.status === 'done'
                 ? isSmaller
-                  ? 'bg-[#fef2ee]'
+                  ? 'bg-[#e8f5e9]'
                   : 'bg-[#f8f8f8]'
                 : 'bg-[#f8f8f8]'
             }`}
@@ -109,7 +109,7 @@ export default function ImageCard({
               className={`text-sm font-semibold ${
                 image.status === 'done'
                   ? isSmaller
-                    ? 'text-[#e95f3d]'
+                    ? 'text-[#2e7d32]'
                     : 'text-[#888]'
                   : 'text-[#ccc]'
               }`}

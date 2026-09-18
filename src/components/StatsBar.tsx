@@ -24,8 +24,10 @@ export default function StatsBar({
   const saved = totalOriginal - totalCompressed;
   const percent = Math.round((1 - totalCompressed / totalOriginal) * 100);
 
+  const isSaved = saved > 0;
+
   return (
-    <div className="rounded-lg bg-[#e95f3d] p-5 text-white">
+    <div className={`rounded-lg p-5 text-white ${isSaved ? 'bg-[#2e7d32]' : 'bg-[#e95f3d]'}`}>
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <div className="rounded-md bg-white/20 p-2">
