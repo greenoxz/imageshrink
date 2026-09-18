@@ -29,9 +29,9 @@ export default function ImageCard({
   const isSmaller = image.compressedSize < image.originalSize;
 
   return (
-    <div className="glass rounded-2xl overflow-hidden transition-all duration-300 hover:glass-strong group">
+    <div className="rounded-2xl bg-[#1a1a1a] border border-[#222] overflow-hidden hover:border-[#333] transition-colors">
       {/* Image Preview */}
-      <div className="relative aspect-video bg-black/20 overflow-hidden">
+      <div className="relative aspect-video bg-[#111] overflow-hidden">
         <img
           src={image.compressedUrl || image.originalUrl}
           alt={image.file.name}
@@ -40,7 +40,7 @@ export default function ImageCard({
         {/* Status Badge */}
         <div className="absolute top-2.5 left-2.5">
           {image.status === 'compressing' && (
-            <span className="glass-badge-warning inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium">
+            <span className="inline-flex items-center gap-1 rounded-full bg-[#e95f3d]/20 border border-[#e95f3d]/30 px-2.5 py-1 text-xs font-medium text-[#e95f3d]">
               <svg className="animate-spin h-3 w-3" viewBox="0 0 24 24">
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
@@ -52,15 +52,15 @@ export default function ImageCard({
             <span
               className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium ${
                 isSmaller
-                  ? 'glass-badge-success'
-                  : 'glass-badge'
+                  ? 'bg-[#1b5e20]/30 border border-[#2e7d32]/40 text-[#81c784]'
+                  : 'bg-[#222] border border-[#333] text-[#888]'
               }`}
             >
               {isSmaller ? `-${savings}%` : 'ไม่ลดลง'}
             </span>
           )}
           {image.status === 'error' && (
-            <span className="glass-badge inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium text-red-200 border-red-300/40 bg-red-500/30">
+            <span className="inline-flex items-center gap-1 rounded-full bg-[#b71c1c]/30 border border-[#c62828]/40 px-2.5 py-1 text-xs font-medium text-[#ef5350]">
               ผิดพลาด
             </span>
           )}
@@ -68,7 +68,7 @@ export default function ImageCard({
         {/* Remove Button */}
         <button
           onClick={onRemove}
-          className="absolute top-2.5 right-2.5 glass-btn rounded-full p-1.5 glass-text opacity-0 group-hover:opacity-100 transition-opacity"
+          className="absolute top-2.5 right-2.5 rounded-full bg-[#1a1a1a]/80 border border-[#333] p-1.5 text-[#888] hover:text-[#e95f3d] hover:border-[#e95f3d]/50 transition-colors"
         >
           <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -77,20 +77,20 @@ export default function ImageCard({
       </div>
 
       {/* Info Section */}
-      <div className="p-4 relative z-10">
-        <p className="text-sm font-medium glass-text truncate mb-3" title={image.file.name}>
+      <div className="p-3.5">
+        <p className="text-sm font-medium text-[#e5e5e5] truncate mb-3" title={image.file.name}>
           {image.file.name}
         </p>
 
         {/* Size Comparison */}
         <div className="grid grid-cols-2 gap-2 mb-3">
-          <div className="glass-subtle rounded-xl p-2.5">
-            <div className="text-[10px] glass-text-dim uppercase tracking-wide mb-0.5">เดิม</div>
-            <div className="text-sm font-semibold glass-text">
+          <div className="rounded-xl bg-[#111] border border-[#222] p-2.5">
+            <div className="text-[10px] text-[#666] uppercase tracking-wide mb-0.5">เดิม</div>
+            <div className="text-sm font-semibold text-[#ccc]">
               {formatSize(image.originalSize)}
             </div>
             {image.width > 0 && (
-              <div className="text-[11px] glass-text-dim">
+              <div className="text-[11px] text-[#666]">
                 {image.width} × {image.height}
               </div>
             )}
@@ -98,18 +98,18 @@ export default function ImageCard({
           <div
             className={`rounded-xl p-2.5 ${
               image.status === 'done' && isSmaller
-                ? 'bg-green-500/20 border border-green-300/30 backdrop-blur-xl'
-                : 'glass-subtle'
+                ? 'bg-[#1b5e20]/20 border border-[#2e7d32]/30'
+                : 'bg-[#111] border border-[#222]'
             }`}
           >
-            <div className="text-[10px] glass-text-dim uppercase tracking-wide mb-0.5">หลังบีบอัด</div>
+            <div className="text-[10px] text-[#666] uppercase tracking-wide mb-0.5">หลังบีบอัด</div>
             <div
               className={`text-sm font-semibold ${
                 image.status === 'done'
                   ? isSmaller
-                    ? 'text-green-200'
-                    : 'glass-text-muted'
-                  : 'glass-text-dim'
+                    ? 'text-[#81c784]'
+                    : 'text-[#888]'
+                  : 'text-[#555]'
               }`}
             >
               {image.status === 'done'
@@ -117,7 +117,7 @@ export default function ImageCard({
                 : '—'}
             </div>
             {image.status === 'done' && image.compressedWidth > 0 && (
-              <div className="text-[11px] glass-text-dim">
+              <div className="text-[11px] text-[#666]">
                 {image.compressedWidth} × {image.compressedHeight}
               </div>
             )}
@@ -130,7 +130,7 @@ export default function ImageCard({
             <button
               onClick={onCompress}
               disabled={image.status === 'compressing'}
-              className="flex-1 glass-btn-primary rounded-xl px-3 py-2 text-xs font-semibold disabled:opacity-40"
+              className="flex-1 rounded-full bg-[#e95f3d] px-3 py-2 text-xs font-medium text-white hover:bg-[#d14e2f] transition-colors disabled:opacity-40"
             >
               {image.status === 'compressing' ? 'กำลังทำ...' : 'บีบอัด'}
             </button>
@@ -139,7 +139,7 @@ export default function ImageCard({
             <>
               <button
                 onClick={onDownload}
-                className="flex-1 glass-btn-primary rounded-xl px-3 py-2 text-xs font-semibold flex items-center justify-center gap-1.5"
+                className="flex-1 rounded-full bg-[#e95f3d] px-3 py-2 text-xs font-medium text-white hover:bg-[#d14e2f] transition-colors flex items-center justify-center gap-1.5"
               >
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -148,7 +148,7 @@ export default function ImageCard({
               </button>
               <button
                 onClick={onCompress}
-                className="glass-btn rounded-xl px-3 py-2 glass-text"
+                className="rounded-full bg-[#222] border border-[#2a2a2a] px-3 py-2 text-[#888] hover:border-[#e95f3d]/50 hover:text-[#e95f3d] transition-colors"
                 title="บีบอัดอีกครั้ง"
               >
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
