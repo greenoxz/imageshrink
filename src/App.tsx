@@ -37,27 +37,27 @@ export default function App() {
     <div className="min-h-screen bg-[#0f0f0f]">
       {/* Header */}
       <header className="border-b border-[#1a1a1a] bg-[#111] sticky top-0 z-50">
-        <div className="max-w-5xl mx-auto px-5 py-3.5 flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <div className="rounded-full bg-[#e95f3d] p-2">
-              <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="max-w-5xl mx-auto px-3 sm:px-5 py-3 sm:py-3.5 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2 sm:gap-2.5 min-w-0">
+            <div className="rounded-full bg-[#e95f3d] p-1.5 sm:p-2 flex-shrink-0">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
             </div>
-            <div>
-              <h1 className="text-base font-bold text-[#e5e5e5]">ImageShrink</h1>
-              <p className="text-[11px] text-[#777]">บีบอัดภาพให้เล็กลง คุณภาพเท่าเดิม</p>
+            <div className="min-w-0">
+              <h1 className="text-sm sm:text-base font-bold text-[#e5e5e5] truncate">ImageShrink</h1>
+              <p className="text-[10px] sm:text-[11px] text-[#777] truncate hidden sm:block">บีบอัดภาพให้เล็กลง คุณภาพเท่าเดิม</p>
             </div>
           </div>
           {doneCount > 0 && (
             <button
               onClick={downloadAll}
-              className="rounded-full bg-[#e95f3d] px-4 py-2 text-sm font-medium text-white hover:bg-[#d14e2f] transition-colors flex items-center gap-1.5"
+              className="rounded-full bg-[#e95f3d] px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-white hover:bg-[#d14e2f] transition-colors flex items-center gap-1 sm:gap-1.5 flex-shrink-0"
             >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
-              ดาวน์โหลดทั้งหมด
+              <span className="hidden sm:inline">ดาวน์โหลดทั้งหมด</span>
             </button>
           )}
         </div>
@@ -68,13 +68,13 @@ export default function App() {
         {/* Hero Section */}
         {images.length === 0 && (
           <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-[#e5e5e5] mb-2">
+            <h2 className="text-xl sm:text-2xl font-bold text-[#e5e5e5] mb-2">
               บีบอัดภาพของคุณ
             </h2>
-            <p className="text-sm text-[#888] max-w-md mx-auto leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#888] max-w-md mx-auto leading-relaxed px-2">
               ลดขนาดไฟล์ภาพให้เล็กลงโดยไม่สูญเสียคุณภาพ • ประมวลผลในเบราว์เซอร์ของคุณ ไม่อัพโหลดไปที่เซิร์ฟเวอร์
             </p>
-            <div className="flex justify-center gap-5 mt-5">
+            <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 mt-5">
               <div className="flex items-center gap-1.5 text-xs text-[#888]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#e95f3d]"></span>
                 ไม่มีการอัพโหลด
@@ -92,7 +92,7 @@ export default function App() {
         )}
 
         {/* Drop Zone */}
-        <div className="mb-7">
+        <div className="mb-5 sm:mb-7">
           <DropZone onFilesAdded={addFiles} />
         </div>
 
@@ -144,7 +144,7 @@ export default function App() {
 
         {/* Features Section */}
         {images.length === 0 && (
-          <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="mt-10 sm:mt-14 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
             <div className="rounded-2xl bg-[#1a1a1a] border border-[#222] p-6 text-center">
               <div className="rounded-full bg-[#e95f3d]/10 w-12 h-12 flex items-center justify-center mx-auto mb-3">
                 <svg className="w-5 h-5 text-[#e95f3d]" fill="none" viewBox="0 0 24 24" stroke="currentColor">

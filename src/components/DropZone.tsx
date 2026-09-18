@@ -43,7 +43,7 @@ export default function DropZone({ onFilesAdded }: DropZoneProps) {
       onDrop={handleDrop}
       onClick={handleClick}
       className={`
-        relative cursor-pointer rounded-2xl border-2 border-dashed p-12 text-center transition-all duration-200
+        relative cursor-pointer rounded-2xl border-2 border-dashed p-6 sm:p-12 text-center transition-all duration-200
         ${
           isDragging
             ? 'border-[#e95f3d] bg-[#e95f3d]/10'
