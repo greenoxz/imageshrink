@@ -29,18 +29,18 @@ export default function ImageCard({
   const isSmaller = image.compressedSize < image.originalSize;
 
   return (
-    <div className="rounded-2xl bg-white border border-gray-100 shadow-md overflow-hidden transition-all hover:shadow-lg">
+    <div className="rounded-lg bg-white border border-[#eee] overflow-hidden hover:border-[#ddd] transition-colors">
       {/* Image Preview */}
-      <div className="relative aspect-video bg-gray-100 overflow-hidden">
+      <div className="relative aspect-video bg-[#f8f8f8] overflow-hidden">
         <img
           src={image.compressedUrl || image.originalUrl}
           alt={image.file.name}
           className="w-full h-full object-contain"
         />
         {/* Status Badge */}
-        <div className="absolute top-3 left-3">
+        <div className="absolute top-2.5 left-2.5">
           {image.status === 'compressing' && (
-            <span className="inline-flex items-center gap-1 rounded-full bg-yellow-100 px-3 py-1 text-xs font-medium text-yellow-700">
+            <span className="inline-flex items-center gap-1 rounded bg-[#fff3e0] px-2.5 py-1 text-xs font-medium text-[#e95f3d]">
               <svg className="animate-spin h-3 w-3" viewBox="0 0 24 24">
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
@@ -50,26 +50,25 @@ export default function ImageCard({
           )}
           {image.status === 'done' && (
             <span
-              className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium ${
+              className={`inline-flex items-center gap-1 rounded px-2.5 py-1 text-xs font-medium ${
                 isSmaller
-                  ? 'bg-green-100 text-green-700'
-                  : 'bg-orange-100 text-orange-700'
+                  ? 'bg-[#fef2ee] text-[#e95f3d]'
+                  : 'bg-[#f5f5f5] text-[#888]'
               }`}
             >
-              {isSmaller ? '✓ ลดลง' : 'ไม่ลดลง'}{' '}
-              {isSmaller ? `${savings}%` : ''}
+              {isSmaller ? `-${savings}%` : 'ไม่ลดลง'}
             </span>
           )}
           {image.status === 'error' && (
-            <span className="inline-flex items-center gap-1 rounded-full bg-red-100 px-3 py-1 text-xs font-medium text-red-700">
-              ✗ ผิดพลาด
+            <span className="inline-flex items-center gap-1 rounded bg-[#fff0f0] px-2.5 py-1 text-xs font-medium text-red-500">
+              ผิดพลาด
             </span>
           )}
         </div>
         {/* Remove Button */}
         <button
           onClick={onRemove}
-          className="absolute top-3 right-3 rounded-full bg-white/80 backdrop-blur-sm p-1.5 text-gray-500 hover:text-red-500 hover:bg-white transition-all shadow-sm"
+          className="absolute top-2.5 right-2.5 rounded bg-white/90 p-1 text-[#aaa] hover:text-[#e95f3d] transition-colors"
         >
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -78,41 +77,41 @@ export default function ImageCard({
       </div>
 
       {/* Info Section */}
-      <div className="p-4">
-        <p className="text-sm font-medium text-gray-800 truncate mb-3" title={image.file.name}>
+      <div className="p-3.5">
+        <p className="text-sm font-medium text-[#333] truncate mb-3" title={image.file.name}>
           {image.file.name}
         </p>
 
         {/* Size Comparison */}
-        <div className="grid grid-cols-2 gap-3 mb-3">
-          <div className="rounded-lg bg-gray-50 p-2.5">
-            <div className="text-xs text-gray-500 mb-0.5">เดิม</div>
-            <div className="text-sm font-bold text-gray-700">
+        <div className="grid grid-cols-2 gap-2 mb-3">
+          <div className="rounded bg-[#f8f8f8] p-2.5">
+            <div className="text-[10px] text-[#999] uppercase tracking-wide mb-0.5">เดิม</div>
+            <div className="text-sm font-semibold text-[#555]">
               {formatSize(image.originalSize)}
             </div>
             {image.width > 0 && (
-              <div className="text-xs text-gray-400">
+              <div className="text-[11px] text-[#aaa]">
                 {image.width} × {image.height}
               </div>
             )}
           </div>
           <div
-            className={`rounded-lg p-2.5 ${
+            className={`rounded p-2.5 ${
               image.status === 'done'
                 ? isSmaller
-                  ? 'bg-green-50'
-                  : 'bg-orange-50'
-                : 'bg-gray-50'
+                  ? 'bg-[#fef2ee]'
+                  : 'bg-[#f8f8f8]'
+                : 'bg-[#f8f8f8]'
             }`}
           >
-            <div className="text-xs text-gray-500 mb-0.5">หลังบีบอัด</div>
+            <div className="text-[10px] text-[#999] uppercase tracking-wide mb-0.5">หลังบีบอัด</div>
             <div
-              className={`text-sm font-bold ${
+              className={`text-sm font-semibold ${
                 image.status === 'done'
                   ? isSmaller
-                    ? 'text-green-700'
-                    : 'text-orange-700'
-                  : 'text-gray-400'
+                    ? 'text-[#e95f3d]'
+                    : 'text-[#888]'
+                  : 'text-[#ccc]'
               }`}
             >
               {image.status === 'done'
@@ -120,7 +119,7 @@ export default function ImageCard({
                 : '—'}
             </div>
             {image.status === 'done' && image.compressedWidth > 0 && (
-              <div className="text-xs text-gray-400">
+              <div className="text-[11px] text-[#aaa]">
                 {image.compressedWidth} × {image.compressedHeight}
               </div>
             )}
@@ -133,7 +132,7 @@ export default function ImageCard({
             <button
               onClick={onCompress}
               disabled={image.status === 'compressing'}
-              className="flex-1 rounded-lg bg-indigo-600 px-3 py-2 text-xs font-medium text-white hover:bg-indigo-700 transition-colors disabled:opacity-50"
+              className="flex-1 rounded-md bg-[#e95f3d] px-3 py-2 text-xs font-medium text-white hover:bg-[#d14e2f] transition-colors disabled:opacity-40"
             >
               {image.status === 'compressing' ? 'กำลังทำ...' : 'บีบอัด'}
             </button>
@@ -142,7 +141,7 @@ export default function ImageCard({
             <>
               <button
                 onClick={onDownload}
-                className="flex-1 rounded-lg bg-green-600 px-3 py-2 text-xs font-medium text-white hover:bg-green-700 transition-colors flex items-center justify-center gap-1"
+                className="flex-1 rounded-md bg-[#e95f3d] px-3 py-2 text-xs font-medium text-white hover:bg-[#d14e2f] transition-colors flex items-center justify-center gap-1.5"
               >
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -151,7 +150,7 @@ export default function ImageCard({
               </button>
               <button
                 onClick={onCompress}
-                className="rounded-lg border border-gray-200 px-3 py-2 text-xs font-medium text-gray-600 hover:bg-gray-50 transition-colors"
+                className="rounded-md border border-[#e0e0e0] px-3 py-2 text-[#888] hover:border-[#e95f3d] hover:text-[#e95f3d] transition-colors"
                 title="บีบอัดอีกครั้ง"
               >
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

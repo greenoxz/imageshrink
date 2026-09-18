@@ -25,11 +25,11 @@ export default function StatsBar({
   const percent = Math.round((1 - totalCompressed / totalOriginal) * 100);
 
   return (
-    <div className="rounded-2xl bg-gradient-to-r from-green-500 to-emerald-600 p-5 text-white shadow-lg">
+    <div className="rounded-lg bg-[#e95f3d] p-5 text-white">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="rounded-full bg-white/20 p-2">
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="rounded-md bg-white/20 p-2">
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
@@ -46,7 +46,7 @@ export default function StatsBar({
             <div className="font-bold">{formatSize(totalOriginal)}</div>
           </div>
           <div className="flex items-center">
-            <svg className="w-5 h-5 opacity-60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-4 h-4 opacity-60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
           </div>

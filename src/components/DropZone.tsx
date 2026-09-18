@@ -43,11 +43,11 @@ export default function DropZone({ onFilesAdded }: DropZoneProps) {
       onDrop={handleDrop}
       onClick={handleClick}
       className={`
-        relative cursor-pointer rounded-2xl border-2 border-dashed p-12 text-center transition-all duration-300
+        relative cursor-pointer rounded-lg border-2 border-dashed p-14 text-center transition-all duration-200
         ${
           isDragging
-            ? 'border-indigo-500 bg-indigo-50 scale-[1.02] shadow-lg'
-            : 'border-gray-300 bg-gray-50/50 hover:border-indigo-400 hover:bg-indigo-50/50'
+            ? 'border-[#e95f3d] bg-[#fef2ee]'
+            : 'border-[#e95f3d]/30 bg-[#fef2ee]/40 hover:border-[#e95f3d]/60 hover:bg-[#fef2ee]/70'
         }
       `}
     >
@@ -60,15 +60,9 @@ export default function DropZone({ onFilesAdded }: DropZoneProps) {
         className="hidden"
       />
       <div className="flex flex-col items-center gap-4">
-        <div
-          className={`rounded-full p-4 transition-all duration-300 ${
-            isDragging ? 'bg-indigo-100' : 'bg-gray-100'
-          }`}
-        >
+        <div className={`rounded-full p-4 transition-colors ${isDragging ? 'bg-[#e95f3d]/15' : 'bg-[#e95f3d]/10'}`}>
           <svg
-            className={`h-12 w-12 transition-colors ${
-              isDragging ? 'text-indigo-500' : 'text-gray-400'
-            }`}
+            className={`h-10 w-10 transition-colors ${isDragging ? 'text-[#e95f3d]' : 'text-[#e95f3d]/70'}`}
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -82,16 +76,19 @@ export default function DropZone({ onFilesAdded }: DropZoneProps) {
           </svg>
         </div>
         <div>
-          <p className="text-lg font-semibold text-gray-700">
-            {isDragging ? 'วางไฟล์ที่นี่' : 'ลากไฟล์ภาพมาวางที่นี่'}
+          <p className="text-base font-semibold text-[#333]">
+            {isDragging ? 'วางไฟล์ที่นี่' : 'ลากไฟล์ภาพมาวาง หรือคลิกเพื่อเลือก'}
           </p>
-          <p className="mt-1 text-sm text-gray-500">
-            หรือคลิกเพื่อเลือกไฟล์ • รองรับ JPG, PNG, WebP
+          <p className="mt-1 text-sm text-[#888]">
+            รองรับ JPG, PNG, WebP
           </p>
         </div>
-        <div className="mt-2 rounded-full bg-indigo-600 px-6 py-2 text-sm font-medium text-white shadow-md transition-transform hover:scale-105">
+        <button
+          type="button"
+          className="mt-1 rounded-md bg-[#e95f3d] px-6 py-2 text-sm font-medium text-white hover:bg-[#d14e2f] transition-colors"
+        >
           เลือกไฟล์ภาพ
-        </div>
+        </button>
       </div>
     </div>
   );
