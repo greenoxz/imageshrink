@@ -43,12 +43,8 @@ export default function DropZone({ onFilesAdded }: DropZoneProps) {
       onDrop={handleDrop}
       onClick={handleClick}
       className={`
-        relative cursor-pointer rounded-lg border-2 border-dashed p-14 text-center transition-all duration-200
-        ${
-          isDragging
-            ? 'border-[#e95f3d] bg-[#fef2ee]'
-            : 'border-[#e95f3d]/30 bg-[#fef2ee]/40 hover:border-[#e95f3d]/60 hover:bg-[#fef2ee]/70'
-        }
+        relative cursor-pointer rounded-2xl p-10 text-center transition-all duration-500
+        ${isDragging ? 'glass-strong scale-[1.01]' : 'glass hover:glass-strong'}
       `}
     >
       <input
@@ -59,10 +55,10 @@ export default function DropZone({ onFilesAdded }: DropZoneProps) {
         onChange={handleChange}
         className="hidden"
       />
-      <div className="flex flex-col items-center gap-4">
-        <div className={`rounded-full p-4 transition-colors ${isDragging ? 'bg-[#e95f3d]/15' : 'bg-[#e95f3d]/10'}`}>
+      <div className="flex flex-col items-center gap-4 relative z-10">
+        <div className={`rounded-full p-4 transition-all duration-300 ${isDragging ? 'bg-white/25 scale-110' : 'bg-white/15'}`}>
           <svg
-            className={`h-10 w-10 transition-colors ${isDragging ? 'text-[#e95f3d]' : 'text-[#e95f3d]/70'}`}
+            className={`h-10 w-10 transition-colors ${isDragging ? 'text-white' : 'text-white/80'}`}
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -76,16 +72,16 @@ export default function DropZone({ onFilesAdded }: DropZoneProps) {
           </svg>
         </div>
         <div>
-          <p className="text-base font-semibold text-[#333]">
+          <p className="text-base font-semibold glass-text">
             {isDragging ? 'วางไฟล์ที่นี่' : 'ลากไฟล์ภาพมาวาง หรือคลิกเพื่อเลือก'}
           </p>
-          <p className="mt-1 text-sm text-[#888]">
+          <p className="mt-1 text-sm glass-text-muted">
             รองรับ JPG, PNG, WebP
           </p>
         </div>
         <button
           type="button"
-          className="mt-1 rounded-md bg-[#e95f3d] px-6 py-2 text-sm font-medium text-white hover:bg-[#d14e2f] transition-colors"
+          className="mt-1 glass-btn-primary rounded-full px-6 py-2.5 text-sm font-semibold"
         >
           เลือกไฟล์ภาพ
         </button>

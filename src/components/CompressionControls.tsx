@@ -18,18 +18,18 @@ export default function CompressionControls({
   isCompressing,
 }: CompressionControlsProps) {
   return (
-    <div className="rounded-lg bg-white border border-[#eee] p-5">
-      <h2 className="text-base font-semibold text-[#333] mb-5 flex items-center gap-2">
-        <span className="w-1 h-5 bg-[#e95f3d] rounded-full inline-block"></span>
+    <div className="glass-strong rounded-2xl p-5">
+      <h2 className="text-base font-semibold glass-text mb-5 flex items-center gap-2 relative z-10">
+        <span className="w-1 h-5 bg-white/60 rounded-full inline-block"></span>
         ตั้งค่าการบีบอัด
       </h2>
 
-      <div className="space-y-5">
+      <div className="space-y-5 relative z-10">
         {/* Quality Slider */}
         <div>
-          <div className="flex justify-between items-center mb-2">
-            <label className="text-sm font-medium text-[#555]">คุณภาพ</label>
-            <span className="text-sm font-bold text-[#e95f3d] bg-[#fef2ee] px-2.5 py-0.5 rounded">
+          <div className="flex justify-between items-center mb-2.5">
+            <label className="text-sm font-medium glass-text-muted">คุณภาพ</label>
+            <span className="text-sm font-bold text-white glass-badge px-2.5 py-0.5 rounded-full">
               {options.quality}%
             </span>
           </div>
@@ -41,9 +41,9 @@ export default function CompressionControls({
             onChange={(e) =>
               onChange({ ...options, quality: parseInt(e.target.value) })
             }
-            className="w-full h-1.5 bg-[#f0f0f0] rounded-full appearance-none cursor-pointer accent-[#e95f3d]"
+            className="glass-range"
           />
-          <div className="flex justify-between text-xs text-[#aaa] mt-1.5">
+          <div className="flex justify-between text-xs glass-text-dim mt-2">
             <span>ขนาดเล็ก</span>
             <span>คุณภาพสูง</span>
           </div>
@@ -52,7 +52,7 @@ export default function CompressionControls({
         {/* Max Dimensions */}
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="text-xs font-medium text-[#555] mb-1.5 block">
+            <label className="text-xs font-medium glass-text-muted mb-1.5 block">
               ความกว้างสูงสุด
             </label>
             <input
@@ -61,11 +61,11 @@ export default function CompressionControls({
               onChange={(e) =>
                 onChange({ ...options, maxWidth: parseInt(e.target.value) || 4096 })
               }
-              className="w-full rounded-md border border-[#e0e0e0] px-3 py-2 text-sm text-[#333] focus:border-[#e95f3d] outline-none transition-colors"
+              className="glass-input w-full rounded-xl px-3 py-2.5 text-sm"
             />
           </div>
           <div>
-            <label className="text-xs font-medium text-[#555] mb-1.5 block">
+            <label className="text-xs font-medium glass-text-muted mb-1.5 block">
               ความสูงสูงสุด
             </label>
             <input
@@ -74,14 +74,14 @@ export default function CompressionControls({
               onChange={(e) =>
                 onChange({ ...options, maxHeight: parseInt(e.target.value) || 4096 })
               }
-              className="w-full rounded-md border border-[#e0e0e0] px-3 py-2 text-sm text-[#333] focus:border-[#e95f3d] outline-none transition-colors"
+              className="glass-input w-full rounded-xl px-3 py-2.5 text-sm"
             />
           </div>
         </div>
 
         {/* Output Format */}
         <div>
-          <label className="text-xs font-medium text-[#555] mb-2 block">
+          <label className="text-xs font-medium glass-text-muted mb-2 block">
             รูปแบบไฟล์
           </label>
           <div className="flex gap-2">
@@ -98,14 +98,18 @@ export default function CompressionControls({
                     outputFormat: fmt.value as CompressionOptions['outputFormat'],
                   })
                 }
-                className={`flex-1 rounded-md border px-3 py-2.5 text-center transition-colors ${
+                className={`flex-1 rounded-xl px-3 py-2.5 text-center transition-all duration-300 ${
                   options.outputFormat === fmt.value
-                    ? 'border-[#e95f3d] bg-[#fef2ee] text-[#e95f3d]'
-                    : 'border-[#e8e8e8] text-[#666] hover:border-[#ccc]'
+                    ? 'glass-btn-primary text-sm'
+                    : 'glass-btn text-sm'
                 }`}
               >
-                <div className="text-sm font-semibold">{fmt.label}</div>
-                <div className="text-[10px] opacity-70 mt-0.5">{fmt.desc}</div>
+                <div className={`font-semibold ${options.outputFormat === fmt.value ? '' : 'glass-text'}`}>
+                  {fmt.label}
+                </div>
+                <div className={`text-[10px] mt-0.5 ${options.outputFormat === fmt.value ? 'opacity-70' : 'glass-text-dim'}`}>
+                  {fmt.desc}
+                </div>
               </button>
             ))}
           </div>
@@ -116,7 +120,7 @@ export default function CompressionControls({
           <button
             onClick={onCompress}
             disabled={imageCount === 0 || isCompressing}
-            className="flex-1 rounded-md bg-[#e95f3d] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#d14e2f] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            className="flex-1 glass-btn-primary rounded-xl px-5 py-3 text-sm font-semibold disabled:opacity-40 disabled:cursor-not-allowed"
           >
             {isCompressing ? (
               <span className="flex items-center justify-center gap-2">
@@ -133,7 +137,7 @@ export default function CompressionControls({
           <button
             onClick={onClear}
             disabled={imageCount === 0}
-            className="rounded-md border border-[#e0e0e0] px-3 py-2.5 text-[#888] hover:border-[#ccc] hover:text-[#555] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            className="glass-btn rounded-xl px-3 py-3 glass-text disabled:opacity-40 disabled:cursor-not-allowed"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
